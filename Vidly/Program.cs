@@ -36,6 +36,18 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
+/*
+ * Custom Routes
+ * - Order of routes matter
+ *  - Order from most specific to least
+ *  
+ * https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/routing?view=aspnetcore-6.0
+ */
+app.MapControllerRoute(
+    name: "MoviesByReleaseDate",
+    pattern: "movies/released/{year}/{month}",
+    defaults: new { controller = "Movies", action = "ByReleaseDate"});
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
