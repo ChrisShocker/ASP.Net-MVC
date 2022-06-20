@@ -18,7 +18,7 @@ namespace Vidly.Controllers
      * https://docs.microsoft.com/en-us/aspnet/core/web-api/action-return-types?view=aspnetcore-6.0
      */
 
-    public class MovieController : Controller
+    public class MoviesController : Controller
     {
 
         //ViewResult returns a View upon request
