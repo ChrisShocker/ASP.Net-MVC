@@ -45,5 +45,19 @@ namespace Vidly.Controllers
             //Return a view method that's inherited from base Controller class
             return View(movie);
         }
+
+        /*
+         * Get URL Argument and return
+         * - ie: https://localhost:7009/Movie/Edit/1
+         * 
+         * Get URL query and return it
+         * - ie: https://localhost:7009/Movie/Edit?id=1
+         *  - Note query string paramters must match what's being returned to client
+         */
+
+        public ActionResult Edit(int id)
+        {
+            return Content("id=" + id);
+        }
     }
 }
