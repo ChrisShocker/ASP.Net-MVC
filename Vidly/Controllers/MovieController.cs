@@ -20,13 +20,27 @@ namespace Vidly.Controllers
 
     public class MovieController : Controller
     {
-        //IActionResult is the base class for all IActionResults 
-        //public IActionResult Random()
 
-        //We can use ViewResult since we're returning a View upon request
-        public ViewResult Random()
+        //ViewResult returns a View upon request
+
+        //IActionResult is the base class for all 'Results', use it to return any Result
+        public IActionResult Random()
         {
             var movie = new Movie("SomeMovie");
+
+            //Return a string
+            //return Content("Hello World");
+
+            //Return nothing
+            //return new EmptyResult();
+
+            /*
+             * Return a redirect to a different page
+             * - 1st arg is Action
+             * - 2nd is controller
+             * - 3rd are arguments sent to the targeted action
+             */
+            //return RedirectToAction("Index", "Home", new {page = 1, sortBy = "Name"});
 
             //Return a view method that's inherited from base Controller class
             return View(movie);
