@@ -83,6 +83,16 @@ namespace Vidly.Controllers
             return Content(String.Format("pageIndex = {0} & sortBy={1}", pageIndex, sortBy));
         }
 
+        /*
+         * Custom Routes using Attribute Routing
+         * - More powerful version of custom routing
+         *
+         * https://docs.microsoft.com/en-us/aspnet/web-api/overview/web-api-routing-and-actions/attribute-routing-in-web-api-2
+         * 
+         * Note: Range is an attribute route contstraint
+         */
+        [Route("movies/released/{year}/{month:int:range(1, 12)}")]
+
         public ActionResult ByReleaseDate(int year, int month)
         {
             return Content(year + "/" + month);

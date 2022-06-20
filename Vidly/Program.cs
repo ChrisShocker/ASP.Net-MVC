@@ -37,18 +37,21 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 /*
- * Custom Routes
+ * Old Custom Route Implementation
+ * - Custom routes are now applied in the Controller
+ * 
  * - Order of routes matter
  *  - Order from most specific to least
  *  
  * https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/routing?view=aspnetcore-6.0
+ * 
+    app.MapControllerRoute(
+        name: "MoviesByReleaseDate",
+        pattern: "movies/released/{year}/{month}",
+        defaults: new { controller = "Movies", action = "ByReleaseDate" },
+        //limit the year to 4 digits and month to 2 digits
+        constraints: new { year = @"\d{4}", month = @"\d{2}" });
  */
-app.MapControllerRoute(
-    name: "MoviesByReleaseDate",
-    pattern: "movies/released/{year}/{month}",
-    defaults: new { controller = "Movies", action = "ByReleaseDate" },
-    //limit the year to 4 digits and month to 2 digits
-    constraints: new { year = @"\d{4}", month = @"\d{2}" });
 
 app.MapControllerRoute(
     name: "default",
