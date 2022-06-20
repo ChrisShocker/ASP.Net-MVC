@@ -59,5 +59,28 @@ namespace Vidly.Controllers
         {
             return Content("id=" + id);
         }
+
+        /*
+         * return movie list from db
+         *  - display page 1 movies if pageIndex isn't set
+         *  - sortby movie Name if sortBy name
+         */
+        public ActionResult Index(int? pageIndex, string sortBy)
+        {
+            if(pageIndex == null)
+                pageIndex = 1;
+
+            if (String.IsNullOrWhiteSpace(sortBy))
+            {
+                sortBy = "Name";
+            }
+
+            /*
+             * Return a string with whatever is passed in the arguments
+             *  - ie: https://localhost:7009/Movie?pageIndex=2&sortBy=ReleaseDate
+             *  - returns: pageIndex = 2 & sortBy=ReleaseDate
+             */
+            return Content(String.Format("pageIndex = {0} & sortBy={1}", pageIndex, sortBy));
+        }
     }
 }
