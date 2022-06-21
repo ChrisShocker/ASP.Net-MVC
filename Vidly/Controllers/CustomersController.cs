@@ -34,7 +34,7 @@ namespace Vidly.Controllers
 
                 var uniqueViewModel = new CustomersViewModel
                 {
-                    Customers = customers
+                    Customers = uniqueCustomer
                 };
 
                 return View(uniqueViewModel);
