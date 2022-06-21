@@ -32,35 +32,12 @@ namespace Vidly.Controllers
                         uniqueCustomer.Add(customer);
                 }
 
-
-                //if the customer exists
-                if (uniqueCustomer.Count > 0)
+                var uniqueViewModel = new CustomersViewModel
                 {
-                    //create a viewModel object that will hold the customers
-                    var viewModelUnique = new CustomersViewModel
-                    {
-                        Customers = uniqueCustomer
-                    };
+                    Customers = customers
+                };
 
-                    //Pass the viewModel to the View for rendering
-                    return View(viewModelUnique);
-                }
-
-                //customer not found
-                else
-                {
-                    var notFound = new List<Customer>
-                    {
-                        new Customer { Name = "Customer Not Found"}
-                    };
-
-                    var NotFoundViewModel = new CustomersViewModel
-                    {
-                        Customers = notFound
-                    };
-
-                    return View(NotFoundViewModel);
-                }
+                return View(uniqueViewModel);
             }
 
             //No Arguments passed in return the current list of customers
