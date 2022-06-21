@@ -119,7 +119,7 @@ namespace Vidly.Controllers
          *  - display page 1 movies if pageIndex isn't set
          *  - sortby movie Name if sortBy name
          */
-        public ActionResult Index(int? pageIndex, string sortBy)
+        public ActionResult Index1(int? pageIndex, string sortBy)
         {
             if (pageIndex == null)
                 pageIndex = 1;
@@ -150,6 +150,23 @@ namespace Vidly.Controllers
         public ActionResult ByReleaseDate(int year, int month)
         {
             return Content(year + "/" + month);
+        }
+
+
+        public IActionResult Index()
+        {
+            var movies = new List<Movie>
+            {
+               new Movie { Title = "Die Hard"},
+               new Movie { Title = "Die Hard 2"}
+            };
+
+            var viewModel = new MoviesViewModel
+            {
+                Movies = movies,
+            };
+
+            return View(viewModel); 
         }
     }
 }
