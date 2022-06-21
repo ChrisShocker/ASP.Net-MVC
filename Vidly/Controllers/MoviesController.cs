@@ -26,7 +26,8 @@ namespace Vidly.Controllers
         //IActionResult is the base class for all 'Results', use it to return any Result
         public IActionResult Random()
         {
-            var movie = new Movie("SomeMovie");
+            /******************************************************/
+            //Controller action types
 
             //Return a string
             //return Content("Hello World");
@@ -41,9 +42,45 @@ namespace Vidly.Controllers
              * - 3rd are arguments sent to the targeted action
              */
             //return RedirectToAction("Index", "Home", new {page = 1, sortBy = "Name"});
+            /******************************************************/
 
-            //Return a view method that's inherited from base Controller class
+
+
+            /******************************************************/
+            //Passing Data:
+
+            /*
+             * 1. ViewData approach
+             * create a ViewData object from the view dictionary
+             * 
+             * ViewData["Movie"] = movie;
+             * 
+             * Note: The magic string makes this code fragile 
+             */
+
+            /*
+             * 2. ViewBag approach
+             * create a ViewBag with a magic property
+             * - property is added at runtime
+             * - No Compile time safety
+             * 
+             * Viewbag.Movie = movie;
+             * 
+             * Note: The magic parameter 'Movie' makes this code fragile 
+             */
+
+            /*
+             * 3. Object approach
+             * - Best approach 
+             * 
+             */
+
+            //create a movie object
+            var movie = new Movie("SomeMovie");
             return View(movie);
+
+
+
         }
 
         /*
@@ -67,7 +104,7 @@ namespace Vidly.Controllers
          */
         public ActionResult Index(int? pageIndex, string sortBy)
         {
-            if(pageIndex == null)
+            if (pageIndex == null)
                 pageIndex = 1;
 
             if (String.IsNullOrWhiteSpace(sortBy))
@@ -96,6 +133,6 @@ namespace Vidly.Controllers
         public ActionResult ByReleaseDate(int year, int month)
         {
             return Content(year + "/" + month);
-        } 
+        }
     }
 }
