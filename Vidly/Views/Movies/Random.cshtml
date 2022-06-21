@@ -1,16 +1,45 @@
-﻿
-@model Vidly.Models.Movie
+﻿<!-- //Default model for a Movie Object -->
+@* @model Vidly.Models.Movie *@
+<!--  //model for the custom ViewModels -->
+@model Vidly.ViewModels.RandomMovieViewModel
+
+
 @{
     ViewData["Title"] = "Random";
 }
 
-    <!-- Using object passed in -->
-    <h1>@Model.Title</h1>
+
+@*<//Referencing default Movie Object Using object passed in*@
+@*<!-- <h1>@Model.Title</h1> -->*@
 
 
-    <!--Using ViewData from controller -->
-    <!-- <h1>@ViewData["Movie"]</h1> --> 
+@*//assign a dynamic class if the customer count is greaten then some number*@
+@{
+    var className = Model.Customers.Count > 0 ? "popular" : null;
+}
 
-    <!-- Using ViewBag from controller -->
-    <!-- <h1>@ViewBag.RandomMovie</h1> --> 
 
+@* Using the ViewModels objects
+    - and assigning our custom class*@
+<h1 class = "@className">@Model.Movie.Title</h1>
+
+@if (Model.Customers.Count == 0)
+{
+    <text>This Movie has never been rented</text>
+}
+else
+{
+    <ul>
+        @foreach (var customer in Model.Customers)
+        {
+            <li>@customer.Name</li>
+        }
+    </ul>
+}
+
+
+@*Using ViewData from controller*@
+@*<!-- <h1>@ViewData["Movie"]</h1> --> *@
+
+@*Using ViewBag from controller*@
+@*<!-- <h1>@ViewBag.RandomMovie</h1> --> *@
