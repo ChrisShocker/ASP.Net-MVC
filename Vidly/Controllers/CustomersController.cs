@@ -7,7 +7,7 @@ namespace Vidly.Controllers
     public class CustomersController : Controller
     {
 
-        public IActionResult List(int Id)
+        public IActionResult List()
         {
             //Create some customers to pass to the View
             var customers = new List<Customer>
@@ -22,27 +22,25 @@ namespace Vidly.Controllers
                 Customers = customers
             };
 
-            //If an Id is passed in
-            if (Id != 0)
+            return View(viewModel);
+        }
+
+        public IActionResult Details(int Id)
+        {
+
+            var customers = new List<Customer>
             {
-                var uniqueCustomer = new List<Customer>();
-                foreach (var customer in customers)
-                {
-                    if (customer.Id == Id)
-                        uniqueCustomer.Add(customer);
-                }
+                new Customer { Name = "Gerald", Id = 1 },
+                new Customer { Name = "Harry", Id = 2}
+            };
 
-                var uniqueViewModel = new CustomersViewModel
-                {
-                    Customers = uniqueCustomer
-                };
-
-                return View(uniqueViewModel);
+            foreach(var customer in customers)
+            {
+                if(customer.Id == Id)
+                    return View(customer);
             }
 
-            //No Arguments passed in return the current list of customers
-            else
-                return View(viewModel);
+            return View(customers);
         }
     }
 }
