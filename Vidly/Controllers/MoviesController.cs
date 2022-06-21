@@ -73,6 +73,7 @@ namespace Vidly.Controllers
             /*
              * 3. Object approach
              * - Best approach 
+             * - Pass the object and have access to all its parameters
              * 
              */
 
