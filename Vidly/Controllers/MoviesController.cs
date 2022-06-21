@@ -97,6 +97,9 @@ namespace Vidly.Controllers
             return View(viewModel);
         }
 
+
+        public ActionResult Edit(int id)
+        {
         /*
          * Get URL Argument and return
          * - ie: https://localhost:7009/Movie/Edit/1
@@ -106,10 +109,9 @@ namespace Vidly.Controllers
          *  - Note query string paramters must match what's being returned to client
          */
 
-        public ActionResult Edit(int id)
-        {
             return Content("id=" + id);
         }
+
 
         /*
          * return movie list from db
