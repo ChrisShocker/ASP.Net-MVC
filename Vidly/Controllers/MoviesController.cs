@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Vidly.Models;
+using Vidly.ViewModels;
 
 namespace Vidly.Controllers
 {
@@ -77,10 +78,23 @@ namespace Vidly.Controllers
 
             //create a movie object
             var movie = new Movie("SomeMovie");
-            return View(movie);
+
+            //create a customers list and add two customers to it
+            var customers = new List<Customer>
+            {
+                new Customer { Name = "Customer 1"},
+                new Customer { Name = "Customer 2"}
+            };
+
+            //create a viewModel object
+            var viewModel = new RandomMovieViewModel
+            {
+                Movie = movie,
+                Customers = customers
+            };
 
 
-
+            return View(viewModel);
         }
 
         /*
