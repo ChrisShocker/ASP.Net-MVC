@@ -10,6 +10,7 @@
         <tr>
             <th class ="w-50" scope = "col">Name</th>
             <th scope = "col">Id</th>
+            <th scope = "col">Membership</th>
         </tr>
     </thead>
     <tbody>
@@ -19,6 +20,9 @@
             </td>
             <td>
                 @Model.Id
+            </td>
+            <td>
+                @Model.MembershipType.Name
             </td>
         </tr>
     </tbody>
