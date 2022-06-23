@@ -1,12 +1,12 @@
-﻿@model Vidly.ViewModels.CustomersViewModel
+﻿@model IEnumerable<Vidly.Models.Customer>
 @{
     ViewData["Title"] = "Customers";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@if (Model.Customers.Count == 0)
+@if (!Model.Any())
 {
-    <h1>Customer Doesn't Exit :{</h1>
+    <h1>Customer/s Don't Exist :{</h1>
 }
 
 else
@@ -18,7 +18,7 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var customer in Model.Customers)
+            @foreach (var customer in Model)
             {
                 <tr>
                     <td>
