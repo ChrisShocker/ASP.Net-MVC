@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Vidly.Data;
 using Vidly.Models;
 using Vidly.ViewModels;
 
@@ -152,21 +154,35 @@ namespace Vidly.Controllers
             return Content(year + "/" + month);
         }
 
+        //create an instance of ApplicationDbContext to access the Db
+        private ApplicationDbContext _context;
+
+        public MoviesController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
+
+        //_context is a temporary object
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
 
         public IActionResult Index()
         {
-            var movies = new List<Movie>
-            {
-               new Movie { Title = "Die Hard"},
-               new Movie { Title = "Die Hard 2"}
-            };
+            var movies = _context.Movies.Include(m => m.Genre);
 
-            var viewModel = new MoviesViewModel
-            {
-                Movies = movies,
-            };
+            return View(movies); 
+        }
 
-            return View(viewModel); 
+        public IActionResult Details(int Id)
+        {
+            var movie = _context.Movies.Include(m => m.Genre).SingleOrDefault(movie => movie.Id == Id); 
+
+            return View(movie);
+
         }
     }
+
 }
