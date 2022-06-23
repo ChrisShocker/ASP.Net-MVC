@@ -20,8 +20,8 @@ namespace Vidly.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<byte>(type: "tinyint", nullable: false),
-                    SignupFee = table.Column<short>(type: "smallint", nullable: false),
-                    DuationInMonths = table.Column<byte>(type: "tinyint", nullable: false),
+                    SignUpFee = table.Column<short>(type: "smallint", nullable: false),
+                    DuartionInMonths = table.Column<byte>(type: "tinyint", nullable: false),
                     DiscountRate = table.Column<byte>(type: "tinyint", nullable: false)
                 },
                 constraints: table =>
