@@ -11,6 +11,9 @@
         <tr>
             <th scope = "col">Title</th>
             <th scope = "col">Genre</th>
+            <th scope = "col">Stock</th>
+            <th scope = "col">Release Date</th>
+            <th scope = "col">Date Added</th>
         </tr>
     </thead>
     <tbody>
@@ -20,6 +23,15 @@
             </td>
             <td>
                 @Model.Genre.GenreName
+            </td>
+            <td>
+                @Model.Stock
+            </td>
+            <td>
+                @Model.ReleaseDate.Date.ToString("dd/MM/yyyy")
+            </td>
+            <td>
+                @Model.DateAdded.Date.ToString("dd/MM/yyyy")
             </td>
         </tr>
     </tbody>
