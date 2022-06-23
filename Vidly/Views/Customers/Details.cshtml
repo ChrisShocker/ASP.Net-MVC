@@ -10,6 +10,7 @@
         <tr>
             <th class ="w-50" scope = "col">Name</th>
             <th scope = "col">Id</th>
+            <th scope = "col">BirthDate</th>
             <th scope = "col">Membership</th>
         </tr>
     </thead>
@@ -20,6 +21,9 @@
             </td>
             <td>
                 @Model.Id
+            </td>
+            <td>
+                @Model.BirthDate.Date.ToString("dd/MM/yyyy")
             </td>
             <td>
                 @Model.MembershipType.Name
