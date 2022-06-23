@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Vidly.Data;
 using Vidly.Models;
 using Vidly.ViewModels;
 
@@ -6,41 +7,35 @@ namespace Vidly.Controllers
 {
     public class CustomersController : Controller
     {
+        //create an instance of ApplicationDbContext to access the Db
+        private ApplicationDbContext _context;
+
+        public CustomersController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
+
+        //_context is a temporary object
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
+
 
         public IActionResult List()
         {
-            //Create some customers to pass to the View
-            var customers = new List<Customer>
-            {
-                new Customer { Name = "Gerald", Id = 1 },
-                new Customer { Name = "Harry", Id = 2}
-            };
+            //Entity defers the query until the customer object is actually iterated over ie, at View(customers)
+            var customers = _context.Customers;
 
-
-            var viewModel = new CustomersViewModel
-            {
-                Customers = customers
-            };
-
-            return View(viewModel);
+            return View(customers);
         }
 
         public IActionResult Details(int Id)
         {
+            var customer = _context.Customers.SingleOrDefault(customer => customer.Id == Id); 
 
-            var customers = new List<Customer>
-            {
-                new Customer { Name = "Gerald", Id = 1 },
-                new Customer { Name = "Harry", Id = 2}
-            };
-
-            foreach(var customer in customers)
-            {
-                if(customer.Id == Id)
-                    return View(customer);
-            }
-
-            return View(customers);
+            return View(customer);
         }
     }
 }
